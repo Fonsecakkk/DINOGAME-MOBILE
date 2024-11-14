@@ -1,0 +1,120 @@
+[gd_scene load_steps=12 format=3 uid="uid://vhe708tlxv73"]
+
+[ext_resource type="FontFile" uid="uid://c0nhdyu6yyskr" path="res://kenvector_future_thin.ttf" id="1_6haqg"]
+[ext_resource type="Texture2D" uid="uid://cqg6usmj4abag" path="res://Background/Sky.png" id="1_435r2"]
+[ext_resource type="Texture2D" uid="uid://cki5pjmvgmiu2" path="res://botoes/ui_buttons_arrow_left_NORMAL.png" id="4_tcw6l"]
+[ext_resource type="Texture2D" uid="uid://c20j6h7brnoos" path="res://botoes/ui_buttons_arrow_left_PRESSED.png" id="5_265hh"]
+[ext_resource type="Texture2D" uid="uid://4tutol3uqqkv" path="res://botoes/ui_buttons_arrow_right_NORMAL.png" id="6_odxyp"]
+[ext_resource type="Texture2D" uid="uid://dyv3cd0whur6e" path="res://botoes/ui_buttons_arrow_right_PRESSED.png" id="7_1lldl"]
+[ext_resource type="Texture2D" uid="uid://bqfdiawlhlfip" path="res://botoes/ui_buttons_arrow_up_NORMAL.png" id="8_5dkp3"]
+[ext_resource type="PackedScene" uid="uid://bcdc34np2atdx" path="res://scenes/player.tscn" id="8_bdj0u"]
+[ext_resource type="Texture2D" uid="uid://bvyyborsrm677" path="res://botoes/ui_buttons_arrow_up_PRESSED.png" id="9_6k4sg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_un6rw"]
+size = Vector2(556.25, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_68u5g"]
+size = Vector2(392.875, 60.1891)
+
+[node name="Main" type="Node"]
+
+[node name="Sky" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(283, 462)
+scale = Vector2(2.72656, 5.22396)
+texture = ExtResource("1_435r2")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 33.0
+offset_top = -5.0
+offset_right = 33.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CoinsLabel" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -137.0
+offset_top = 16.0
+offset_right = 130.0
+offset_bottom = 84.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_6haqg")
+theme_override_font_sizes/font_size = 60
+text = "Coins: 0"
+
+[node name="LevelLabel" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -140.0
+offset_top = 65.0
+offset_right = 134.0
+offset_bottom = 133.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_6haqg")
+theme_override_font_sizes/font_size = 60
+text = "Level: 1"
+
+[node name="Botoes" type="CanvasLayer" parent="."]
+
+[node name="up" type="TouchScreenButton" parent="Botoes"]
+position = Vector2(240, 657)
+scale = Vector2(2, 2)
+texture_normal = ExtResource("8_5dkp3")
+texture_pressed = ExtResource("9_6k4sg")
+action = "move_up"
+
+[node name="right" type="TouchScreenButton" parent="Botoes"]
+position = Vector2(298, 709)
+scale = Vector2(2, 2)
+texture_normal = ExtResource("6_odxyp")
+texture_pressed = ExtResource("7_1lldl")
+action = "move_right"
+
+[node name="left" type="TouchScreenButton" parent="Botoes"]
+position = Vector2(183, 707)
+scale = Vector2(2, 2)
+texture_normal = ExtResource("4_tcw6l")
+texture_pressed = ExtResource("5_265hh")
+action = "move_left"
+
+[node name="down" type="TouchScreenButton" parent="Botoes"]
+position = Vector2(304, 821)
+rotation = 3.14092
+scale = Vector2(2, 2)
+texture_normal = ExtResource("8_5dkp3")
+texture_pressed = ExtResource("9_6k4sg")
+action = "move_down"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(672, -36)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-400.125, 991)
+shape = SubResource("RectangleShape2D_un6rw")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-395, 35)
+shape = SubResource("RectangleShape2D_un6rw")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-663.184, 506.7)
+scale = Vector2(0.0754241, 15.8401)
+shape = SubResource("RectangleShape2D_68u5g")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-119, 514)
+scale = Vector2(0.0754241, 15.8401)
+shape = SubResource("RectangleShape2D_68u5g")
+
+[node name="player" parent="." instance=ExtResource("8_bdj0u")]
+position = Vector2(291, 400)
